@@ -1,0 +1,100 @@
+C:\ProgramData\MySQL\MySQL Server 8.0\Data\past_underwear_3653
+
+create table Customer (
+cid int AUTO_INCREMENT PRIMARY KEY,
+cname varchar(225) NOT NULL,
+source varchar(225) NOT NULL,
+destination varchar(225) NOT NULL,
+busNo varchar(225) NOT NULL
+);
+ALTER TABLE Customer AUTO_INCREMENT = 100;
+
+
+create table Administrator (
+username varchar(225) PRIMARY KEY,
+password varchar(225) NOT NULL,
+name varchar(225) NOT NULL,
+address varchar(225) NOT NULL
+);
+
+
+create table Buses (
+busNo varchar(225) PRIMARY KEY,
+date DATE NOT NULL,
+source varchar(225) NOT NULL,
+sTime DATETIME NOT NULL,
+destination varchar(225) NOT NULL,
+dTime DATETIME NOT NULL,
+type varchar(225) NOT NULL,
+totalSeat int NOT NULL,
+bookedSeat int DEFAULT 0
+);
+
+
+
+mysql> show tables;
++-------------------------------+
+| Tables_in_past_underwear_3653 |
++-------------------------------+
+| administrator                 |
+| buses                         |
+| customer                      |
++-------------------------------+
+3 rows in set (0.01 sec)
+
+mysql> desc administrator;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| username | varchar(225) | NO   | PRI | NULL    |       |
+| password | varchar(225) | NO   |     | NULL    |       |
+| name     | varchar(225) | NO   |     | NULL    |       |
+| address  | varchar(225) | NO   |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> desc buses;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| busNo       | varchar(225) | NO   | PRI | NULL    |       |
+| date        | date         | NO   |     | NULL    |       |
+| source      | varchar(225) | NO   |     | NULL    |       |
+| sTime       | datetime     | NO   |     | NULL    |       |
+| destination | varchar(225) | NO   |     | NULL    |       |
+| dTime       | datetime     | NO   |     | NULL    |       |
+| type        | varchar(225) | NO   |     | NULL    |       |
+| totalSeat   | int          | NO   |     | NULL    |       |
+| bookedSeat  | int          | YES  |     | 0       |       |
++-------------+--------------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+mysql> desc customer;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| cid         | int          | NO   | PRI | NULL    | auto_increment |
+| cname       | varchar(225) | NO   |     | NULL    |                |
+| source      | varchar(225) | NO   |     | NULL    |                |
+| destination | varchar(225) | NO   |     | NULL    |                |
+| busNo       | varchar(225) | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql>
+insert into customer(cname, source, destination, busNo) values('Pratik Sontakke', 'Amravati', 'Shimla', 'MH27AU9063');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
