@@ -12,6 +12,5 @@ public interface CustomerDao {
 	public Customer getCustomerByCid(int cid)throws CustomerException;
 	public Customer loginCustomer (int cid , String cname) throws CustomerException;
 	public List<Customer> getAllCustomerDetails() throws CustomerException;
-	public Customer 
 	
 }
