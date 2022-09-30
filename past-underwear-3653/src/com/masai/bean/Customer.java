@@ -1,21 +1,37 @@
 package com.masai.bean;
 
 public class Customer {
+	private String cuserName;
+	private String cpassword;
 	private String cname;
-	private String source;
-	private String destination;
-	private String busNo;
+	private String address;
 	
 	public Customer() {
 		
 	}
-	
-	public Customer(String cname, String source, String destination, String busNo) {
+
+	public Customer(String cuserName, String cpassword, String cname, String address) {
 		super();
+		this.cuserName = cuserName;
+		this.cpassword = cpassword;
 		this.cname = cname;
-		this.source = source;
-		this.destination = destination;
-		this.busNo = busNo;
+		this.address = address;
+	}
+
+	public String getCuserName() {
+		return cuserName;
+	}
+
+	public void setCuserName(String cuserName) {
+		this.cuserName = cuserName;
+	}
+
+	public String getCpassword() {
+		return cpassword;
+	}
+
+	public void setCpassword(String cpassword) {
+		this.cpassword = cpassword;
 	}
 
 	public String getCname() {
@@ -26,35 +42,22 @@ public class Customer {
 		this.cname = cname;
 	}
 
-	public String getSource() {
-		return source;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setSource(String source) {
-		this.source = source;
-	}
-
-	public String getDestination() {
-		return destination;
-	}
-
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-
-	public String getBusNo() {
-		return busNo;
-	}
-
-	public void setBusNo(String busNo) {
-		this.busNo = busNo;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [cname=" + cname + ", source=" + source + ", destination=" + destination + ", busNo=" + busNo
-				+ "]";
+		return "Customer [cuserName=" + cuserName + ", cpassword=" + cpassword + ", cname=" + cname + ", address="
+				+ address + "]";
 	}
+
+	
+	
 	
 	
 }

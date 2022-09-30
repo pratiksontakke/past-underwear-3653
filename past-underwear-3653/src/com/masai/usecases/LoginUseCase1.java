@@ -12,17 +12,15 @@ public class LoginUseCase1 {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("Enter your id");	
-		int cid = sc.nextInt();
-		sc.nextLine();
-		System.out.println("Enter your name");
-		String cname = sc.nextLine();
+		System.out.println("Enter your username");	
+		String username = sc.nextLine();
+		System.out.println("Enter your password");
+		String password = sc.nextLine();
 		
 		CustomerDao dao = new CustomerDaoImpl();
 		
 		 try {
-			Customer customer = dao.loginCustomer(cid, cname);
+			Customer customer = dao.loginCustomer(username, password);
 			
 			System.out.println(customer);
 			
