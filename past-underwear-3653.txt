@@ -85,13 +85,41 @@ mysql>
 insert into customer(cname, source, destination, busNo) values('Pratik Sontakke', 'Amravati', 'Shimla', 'MH27AU9063');
 
 
+//YYYY-MM-DD HH-MM-SS.
 
+insert into buses values(
+'MH27BY001', "2022-09-29", 'Amravati', 
+"2022-09-29 13-40-00",'Manali', "2022-09-30 13-40-00", 
+'AC', 32, 20);
 
+insert into buses values(
+'MH27AU9063', "2022-09-29", 'Amravati', 
+"2022-09-29 13-40-00",'Shimla', "2022-09-30 13-40-00", 
+'Non-AC', 32, 20);
 
+insert into buses values(
+'MH27BY7766', "2022-10-05", 'Akola', 
+"2022-10-05 06-40-00",'Amravati', "2022-10-05 10-20-00", 
+'AC', 32, 20);
 
+mysql> select * from buses;
++------------+------------+----------+---------------------+-------------+---------------------+--------+-----------+------------+
+| busNo      | date       | source   | sTime               | destination | dTime               | type   | totalSeat | bookedSeat |
++------------+------------+----------+---------------------+-------------+---------------------+--------+-----------+------------+
+| MH27AU9063 | 2022-09-29 | Amravati | 2022-09-29 13:40:00 | Shimla      | 2022-09-30 13:40:00 | Non-AC |        32 |         20 |
+| MH27BY001  | 2022-09-29 | Amravati | 2022-09-29 13:40:00 | Manali      | 2022-09-30 13:40:00 | AC     |        32 |         20 |
+| MH27BY7766 | 2022-10-05 | Akola    | 2022-10-05 06:40:00 | Amravati    | 2022-10-05 10:20:00 | AC     |        32 |         20 |
++------------+------------+----------+---------------------+-------------+---------------------+--------+-----------+------------+
 
-
-
+mysql> select * from customer;
++-----+--------------------+----------+-------------+------------+
+| cid | cname              | source   | destination | busNo      |
++-----+--------------------+----------+-------------+------------+
+| 100 | Pratik Sontakke    | Amravati | Shimla      | MH27AU9063 |
+| 101 | Vicky Khedkar      | Amravati | Manali      | MH27BY001  |
+| 102 | Prathamesh Khedkar | Akola    | Amravati    | MH27BY7766 |
+| 103 | Akash Wankhade     | Nagpur   | Mumbai      | MH32HG5543 |
++-----+--------------------+----------+-------------+------------+
 
 
 
