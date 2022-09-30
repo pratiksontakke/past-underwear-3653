@@ -13,12 +13,12 @@ public class GetCustomerUseCase {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("Enter Customer Id : ");
-		int cid = sc.nextInt();
+		System.out.print("Enter Customer Username : ");
+		String username = sc.next();
 		CustomerDao dao = new CustomerDaoImpl();
 		
 		try {
-			Customer customer = dao.getCustomerByCid(cid);
+			Customer customer = dao.getCustomerByUsername(username);
 			System.out.println(customer);
 		} catch (CustomerException ce) {
 			System.out.println(ce.getMessage());

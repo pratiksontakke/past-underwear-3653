@@ -19,7 +19,7 @@ public class usecase {
 		System.out.println("Type 1 : Login as Customer");
 		System.out.println("Type 2 : Login as Administrator");
 		System.out.println("Type 3 : Search Buses");
-		System.out.println("Type 4 : exit");
+		System.out.println("Type 4 : Exit");
 		
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
@@ -37,7 +37,49 @@ public class usecase {
 					CustomerDao daoE = new CustomerDaoImpl();
 					try {
 						Customer customer = daoE.loginCustomer(cusername, cpassword);
-						System.out.println(customer);
+						
+						//menu of customer if login is true;
+						
+						System.out.println("Type 1 : To view " + customer.getCname() + " profile.");
+						System.out.println("Type 2 : To view ticket booked by " + customer.getCname());
+						System.out.println("Type 3 : To search buses ");
+						System.out.println("Type 4 : To book a new ticket");
+						System.out.println("Type 5 : Exit");
+						
+						input = sc.nextInt();
+						sc.nextLine();
+						boolean customerBoolean = true;
+						
+						while (customerBoolean) {
+						
+							switch (input) {
+							case 1: {
+								System.out.println(customer);
+								break;
+							}
+							case 2: {
+								
+								break;
+							}
+							case 3: {
+								
+								break;
+							}
+							case 4: {
+								
+								break;
+							}
+							case 5: {
+								customerBoolean = false;
+								break;
+							}
+							default:
+								throw new IllegalArgumentException("Unexpected value: " + input);
+							}
+						
+						}
+						
+						
 					} catch (CustomerException e) {
 						System.out.println(e.getMessage());
 					}
