@@ -12,17 +12,16 @@ import com.masai.exceptions.CustomerException;
 import com.masai.utility.DBUtil;
 
 public class CustomerDaoImpl implements CustomerDao {
-
 	@Override
-	public String registerCustomer1(String cname, String source, String destination, String busNo) {
+	public String registerCustomer1(String cuserName, String cpassword, String cname, String address ) {
 		String message = "Not Inserted..";
 		
 		try(Connection conn = DBUtil.provideConnection();) {
-			PreparedStatement ps = conn.prepareStatement("insert into customer(cname, source, destination, busNo) values(?, ?, ?, ?)");
-			ps.setString(1, cname);
-			ps.setString(2, source);
-			ps.setString(3, destination);
-			ps.setString(4, busNo);
+			PreparedStatement ps = conn.prepareStatement("insert into customers values('?', '?' ,'?', '?')");
+			ps.setString(1, cuserName);
+			ps.setString(2, cpassword);
+			ps.setString(3, cname);
+			ps.setString(4, address);
 			
 			int x = ps.executeUpdate();
 			
@@ -40,11 +39,11 @@ public class CustomerDaoImpl implements CustomerDao {
 		String message = "Not Inserted..";
 		
 		try(Connection conn = DBUtil.provideConnection();) {
-			PreparedStatement ps = conn.prepareStatement("insert into customer(cname, source, destination, busNo) values(?, ?, ?, ?)");
-			ps.setString(1, customer.getCname());
-			ps.setString(2, customer.getSource());
-			ps.setString(3, customer.getDestination());
-			ps.setString(4, customer.getBusNo());
+			PreparedStatement ps = conn.prepareStatement("insert into customers values('?', '?' ,'?', '?')");
+			ps.setString(1, customer.getCuserName());
+			ps.setString(2, customer.getCpassword());
+			ps.setString(3, customer.getCname());
+			ps.setString(4, customer.getAddress());
 			
 			int x = ps.executeUpdate();
 			
@@ -85,20 +84,19 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public Customer loginCustomer(int cid, String cname) throws CustomerException {
+	public Customer loginCustomer(String username , String password) throws CustomerException {
 		Customer customer = null;
 		
 		try(Connection conn = DBUtil.provideConnection()) {
 			
-			PreparedStatement ps = conn.prepareStatement("select * from customer where cid = ? AND cname = ?");
-			ps.setInt(1, cid);
-			ps.setString(2, cname);
+			PreparedStatement ps = conn.prepareStatement("select * from customers where cusername = ? AND cpassword = ?");
+			ps.setString(1, username);
+			ps.setString(2, password);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				rs.getInt("cid");
-				customer = new Customer(rs.getString("cname"), rs.getString("source"), rs.getString("destination"),rs.getString("busNo"));
+				customer = new Customer(rs.getString("cusername"), rs.getString("cpassword"), rs.getString("cname"),rs.getString("address"));
 			} else {
 				throw new CustomerException("Invalid username or password");
 			}
