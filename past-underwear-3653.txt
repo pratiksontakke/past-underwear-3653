@@ -1,0 +1,128 @@
+C:\ProgramData\MySQL\MySQL Server 8.0\Data\past_underwear_3653
+
+create table Customer (
+cid int AUTO_INCREMENT PRIMARY KEY,
+cname varchar(225) NOT NULL,
+source varchar(225) NOT NULL,
+destination varchar(225) NOT NULL,
+busNo varchar(225) NOT NULL
+);
+ALTER TABLE Customer AUTO_INCREMENT = 100;
+
+
+create table Administrator (
+username varchar(225) PRIMARY KEY,
+password varchar(225) NOT NULL,
+name varchar(225) NOT NULL,
+address varchar(225) NOT NULL
+);
+
+
+create table Buses (
+busNo varchar(225) PRIMARY KEY,
+date DATE NOT NULL,
+source varchar(225) NOT NULL,
+sTime DATETIME NOT NULL,
+destination varchar(225) NOT NULL,
+dTime DATETIME NOT NULL,
+type varchar(225) NOT NULL,
+totalSeat int NOT NULL,
+bookedSeat int DEFAULT 0
+);
+
+
+
+mysql> show tables;
++-------------------------------+
+| Tables_in_past_underwear_3653 |
++-------------------------------+
+| administrator                 |
+| buses                         |
+| customer                      |
++-------------------------------+
+3 rows in set (0.01 sec)
+
+mysql> desc administrator;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| username | varchar(225) | NO   | PRI | NULL    |       |
+| password | varchar(225) | NO   |     | NULL    |       |
+| name     | varchar(225) | NO   |     | NULL    |       |
+| address  | varchar(225) | NO   |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> desc buses;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| busNo       | varchar(225) | NO   | PRI | NULL    |       |
+| date        | date         | NO   |     | NULL    |       |
+| source      | varchar(225) | NO   |     | NULL    |       |
+| sTime       | datetime     | NO   |     | NULL    |       |
+| destination | varchar(225) | NO   |     | NULL    |       |
+| dTime       | datetime     | NO   |     | NULL    |       |
+| type        | varchar(225) | NO   |     | NULL    |       |
+| totalSeat   | int          | NO   |     | NULL    |       |
+| bookedSeat  | int          | YES  |     | 0       |       |
++-------------+--------------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+mysql> desc customer;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| cid         | int          | NO   | PRI | NULL    | auto_increment |
+| cname       | varchar(225) | NO   |     | NULL    |                |
+| source      | varchar(225) | NO   |     | NULL    |                |
+| destination | varchar(225) | NO   |     | NULL    |                |
+| busNo       | varchar(225) | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql>
+insert into customer(cname, source, destination, busNo) values('Pratik Sontakke', 'Amravati', 'Shimla', 'MH27AU9063');
+
+
+//YYYY-MM-DD HH-MM-SS.
+
+insert into buses values(
+'MH27BY001', "2022-09-29", 'Amravati', 
+"2022-09-29 13-40-00",'Manali', "2022-09-30 13-40-00", 
+'AC', 32, 20);
+
+insert into buses values(
+'MH27AU9063', "2022-09-29", 'Amravati', 
+"2022-09-29 13-40-00",'Shimla', "2022-09-30 13-40-00", 
+'Non-AC', 32, 20);
+
+insert into buses values(
+'MH27BY7766', "2022-10-05", 'Akola', 
+"2022-10-05 06-40-00",'Amravati', "2022-10-05 10-20-00", 
+'AC', 32, 20);
+
+mysql> select * from buses;
++------------+------------+----------+---------------------+-------------+---------------------+--------+-----------+------------+
+| busNo      | date       | source   | sTime               | destination | dTime               | type   | totalSeat | bookedSeat |
++------------+------------+----------+---------------------+-------------+---------------------+--------+-----------+------------+
+| MH27AU9063 | 2022-09-29 | Amravati | 2022-09-29 13:40:00 | Shimla      | 2022-09-30 13:40:00 | Non-AC |        32 |         20 |
+| MH27BY001  | 2022-09-29 | Amravati | 2022-09-29 13:40:00 | Manali      | 2022-09-30 13:40:00 | AC     |        32 |         20 |
+| MH27BY7766 | 2022-10-05 | Akola    | 2022-10-05 06:40:00 | Amravati    | 2022-10-05 10:20:00 | AC     |        32 |         20 |
++------------+------------+----------+---------------------+-------------+---------------------+--------+-----------+------------+
+
+mysql> select * from customer;
++-----+--------------------+----------+-------------+------------+
+| cid | cname              | source   | destination | busNo      |
++-----+--------------------+----------+-------------+------------+
+| 100 | Pratik Sontakke    | Amravati | Shimla      | MH27AU9063 |
+| 101 | Vicky Khedkar      | Amravati | Manali      | MH27BY001  |
+| 102 | Prathamesh Khedkar | Akola    | Amravati    | MH27BY7766 |
+| 103 | Akash Wankhade     | Nagpur   | Mumbai      | MH32HG5543 |
++-----+--------------------+----------+-------------+------------+
+
+
+
+
+
+
