@@ -38,7 +38,30 @@ public class CustomerBookedTicketsDaoImpl implements CustomerBookedTicketsDao {
 		return tickets;
 	}
 
+	@Override
+	public String bookedTickets(String username, String busNo, int bookedSeat) {
+		String message = "Failed";
 		
-	
-	
+		try(Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("insert into CustomerBookedTickets values(?,?,NOW(),?)");
+			ps.setString(1, username);
+			ps.setString(2, busNo);
+			ps.setInt(3, bookedSeat);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				message = "Ticket booked !";
+				String DBmsg = new BusesDaoImpl().updateBookedTickets(busNo, bookedSeat);
+				System.out.println(DBmsg);
+			}
+			
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		
+		return message;
+	}
+
 }
