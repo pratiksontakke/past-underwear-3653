@@ -1,13 +1,13 @@
 package com.masai.bean;
 
-public class GetTicketBookedbyCustomer {
+public class CustomerBookedTickets {
 	
 	private String cuserName;
 	private String busNo;
 	private String bookingTime;
 	private String bookedSeat;
 	
-	public GetTicketBookedbyCustomer(String cuserName, String busNo, String bookingTime, String bookedSeat) {
+	public CustomerBookedTickets(String cuserName, String busNo, String bookingTime, String bookedSeat) {
 		super();
 		this.cuserName = cuserName;
 		this.busNo = busNo;

@@ -96,6 +96,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			
 			if(rs.next()) {
 				customer = new Customer(rs.getString("cusername"), rs.getString("cpassword"), rs.getString("cname"),rs.getString("address"));
+				
 			} else {
 				throw new CustomerException("Invalid username or password");
 			}
@@ -119,7 +120,6 @@ public class CustomerDaoImpl implements CustomerDao {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				rs.getInt("cid");
 				Customer customer = new Customer(rs.getString("cname"), rs.getString("source"), rs.getString("destination"),rs.getString("busNo"));
 				customers.add(customer);
 			}

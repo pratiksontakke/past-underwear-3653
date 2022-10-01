@@ -1,11 +1,16 @@
 package com.masai.usecases;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.masai.bean.Administrators;
+import com.masai.bean.Buses;
 import com.masai.bean.Customer;
+import com.masai.bean.CustomerBookedTickets;
 import com.masai.dao.AdministratorsDao;
 import com.masai.dao.AdministratorsDaoImpl;
+import com.masai.dao.BusesDaoImpl;
+import com.masai.dao.CustomerBookedTicketsDaoImpl;
 import com.masai.dao.CustomerDao;
 import com.masai.dao.CustomerDaoImpl;
 import com.masai.exceptions.AdministratorsException;
@@ -38,19 +43,20 @@ public class usecase {
 					try {
 						Customer customer = daoE.loginCustomer(cusername, cpassword);
 						
-						//menu of customer if login is true;
 						
-						System.out.println("Type 1 : To view " + customer.getCname() + " profile.");
-						System.out.println("Type 2 : To view ticket booked by " + customer.getCname());
-						System.out.println("Type 3 : To search buses ");
-						System.out.println("Type 4 : To book a new ticket");
-						System.out.println("Type 5 : Exit");
-						
-						input = sc.nextInt();
-						sc.nextLine();
 						boolean customerBoolean = true;
 						
 						while (customerBoolean) {
+						
+							//menu of customer if login is true;
+							
+							System.out.println("Type 1 : To view " + customer.getCname() + " profile.");
+							System.out.println("Type 2 : To view ticket booked by " + customer.getCname());
+							System.out.println("Type 3 : To search buses ");
+							System.out.println("Type 4 : To book a new ticket");
+							System.out.println("Type 5 : Exit");
+							input = sc.nextInt();
+							sc.nextLine();
 						
 							switch (input) {
 							case 1: {
@@ -58,11 +64,19 @@ public class usecase {
 								break;
 							}
 							case 2: {
-								
+								List<CustomerBookedTickets> tickets = new CustomerBookedTicketsDaoImpl().getTicketBookedbyCustomer(cusername);
+								tickets.forEach(t -> System.out.println(t));
 								break;
 							}
 							case 3: {
-								
+								System.out.print("Enter Source : ");
+								String source = sc.nextLine();
+								System.out.print("Enter Destination : ");
+								String destination = sc.nextLine();
+								System.out.print("Enter Date of Travel (YYYY-MM-DD): ");
+								String date = sc.nextLine();
+								List<Buses> buses = new BusesDaoImpl().searchBuses(source, destination, date);
+								buses.forEach(b -> System.out.println(b));
 								break;
 							}
 							case 4: {
