@@ -58,21 +58,20 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public Customer getCustomerByCid(int cid) throws CustomerException {
+	public Customer getCustomerByUsername(String username) throws CustomerException {
 		Customer customer = null;
 		
 		try(Connection conn = DBUtil.provideConnection()) {
 			
-			PreparedStatement ps = conn.prepareStatement("select * from customer where cid = ?");
+			PreparedStatement ps = conn.prepareStatement("select * from customers where cusername = ?");
 			
-			ps.setInt(1, cid);
+			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				rs.getInt("cid");
-				customer = new Customer(rs.getString("cname"), rs.getString("source"), rs.getString("destination"),rs.getString("busNo"));
+				customer = new Customer(rs.getString("cusername"), rs.getString("cpassword"), rs.getString("cname"),rs.getString("address"));
 			} else {
-				throw new CustomerException("Customer does not exist with Id : " + cid);
+				throw new CustomerException("Customer does not exist with Id : " + username);
 			}
 			
 		} catch (SQLException e) {
@@ -97,6 +96,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			
 			if(rs.next()) {
 				customer = new Customer(rs.getString("cusername"), rs.getString("cpassword"), rs.getString("cname"),rs.getString("address"));
+				
 			} else {
 				throw new CustomerException("Invalid username or password");
 			}
@@ -120,7 +120,6 @@ public class CustomerDaoImpl implements CustomerDao {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				rs.getInt("cid");
 				Customer customer = new Customer(rs.getString("cname"), rs.getString("source"), rs.getString("destination"),rs.getString("busNo"));
 				customers.add(customer);
 			}
