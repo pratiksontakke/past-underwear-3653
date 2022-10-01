@@ -8,5 +8,6 @@ import com.masai.exceptions.CustomerBookedTicketsException;
 public interface CustomerBookedTicketsDao {
 	
 	public List<CustomerBookedTickets> getTicketBookedbyCustomer(String username) throws CustomerBookedTicketsException;
+	public String bookedTickets(String username, String busNo, int bookedSeat);
 
 }
