@@ -5,9 +5,9 @@ public class CustomerBookedTickets {
 	private String cuserName;
 	private String busNo;
 	private String bookingTime;
-	private String bookedSeat;
+	private int bookedSeat;
 	
-	public CustomerBookedTickets(String cuserName, String busNo, String bookingTime, String bookedSeat) {
+	public CustomerBookedTickets(String cuserName, String busNo, String bookingTime, int bookedSeat) {
 		super();
 		this.cuserName = cuserName;
 		this.busNo = busNo;
@@ -39,17 +39,17 @@ public class CustomerBookedTickets {
 		this.bookingTime = bookingTime;
 	}
 
-	public String getBookedSeat() {
+	public int getBookedSeat() {
 		return bookedSeat;
 	}
 
-	public void setBookedSeat(String bookedSeat) {
+	public void setBookedSeat(int bookedSeat) {
 		this.bookedSeat = bookedSeat;
 	}
 
 	@Override
 	public String toString() {
-		return "GetTicketBookedbyCustomer [cuserName=" + cuserName + ", busNo=" + busNo + ", bookingTime=" + bookingTime
+		return "GetTicketBookedbyCustomer [cuserName=" + cuserName + ", busNo=" + busNo + ", PNR No/bookingTime=" + bookingTime
 				+ ", bookedSeat=" + bookedSeat + "]";
 	}
 	

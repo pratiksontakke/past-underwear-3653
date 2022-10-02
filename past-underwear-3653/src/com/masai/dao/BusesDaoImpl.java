@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.masai.bean.Buses;
 import com.masai.exceptions.BusesException;
-import com.masai.exceptions.CustomerException;
 import com.masai.utility.DBUtil;
 
 public class BusesDaoImpl implements BusesDao {
@@ -130,6 +129,117 @@ public class BusesDaoImpl implements BusesDao {
 			}
 			
 			
+		} catch (Exception e) {
+			throw new BusesException(e.getMessage());
+		}
+		
+		return message;
+	}
+
+
+	@Override
+	public Buses searchBuseByBusNo(String BusNo) throws BusesException {
+		Buses bus = null;
+		
+		try(Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from buses where busNo = ?");
+			ps.setString(1, BusNo);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				bus = new Buses(rs.getString("busNO"), rs.getString("insertBy"), rs.getString("date"), 
+						rs.getString("source"), rs.getString("sTime"), rs.getString("destination"), 
+						rs.getString("dTime"), rs.getString("type"), rs.getInt("bookedSeat"), 
+						rs.getInt("totalSeat"), rs.getInt("fare"));
+				
+			} else {
+				throw new BusesException("No Bus found...");
+			}
+			
+		} catch (Exception e) {
+			throw new BusesException(e.getMessage());
+		}
+		
+		return bus;
+	}
+
+
+	@Override
+	public String dedateBookedTickets(String busNo, int decrement) throws BusesException {
+		String message = "Datebase is not update...";
+		
+		try(Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("UPDATE buses SET bookedSeat = bookedSeat-? where busNo = ?");
+			ps.setInt(1,decrement);
+			ps.setString(2, busNo);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				message = "Database is updated";
+			} else {
+				throw new BusesException("No Bus found...");
+			}
+					
+			
+		} catch (Exception e) {
+			throw new BusesException(e.getMessage());
+		}
+		
+		return message;
+	}
+
+
+	@Override
+	public List<Buses> searchBuseByAdministrator(String username) throws BusesException {
+		List<Buses> buses = new ArrayList<>();
+		
+		try(Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from buses where insertBy = ?");
+			ps.setString(1, username);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Buses bus = new Buses(rs.getString("busNO"), rs.getString("insertBy"), rs.getString("date"), 
+						rs.getString("source"), rs.getString("sTime"), rs.getString("destination"), 
+						rs.getString("dTime"), rs.getString("type"), rs.getInt("bookedSeat"), 
+						rs.getInt("totalSeat"), rs.getInt("fare"));
+				
+				buses.add(bus);
+			}
+			
+		} catch (Exception e) {
+			throw new BusesException(e.getMessage());
+		}
+		
+		if(buses.size() == 0) {
+			throw new BusesException("No Bus found...");
+		}
+		
+		return buses;
+	}
+
+
+	@Override
+	public String DeleteBuseByBusNo(String BusNo) throws BusesException {
+		String message = "Bus is not delete. Please check your Bus Number ...";
+		
+		try(Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM buses WHERE busNo = ?");
+			ps.setString(1,BusNo);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				message = "Bus is deleted having Bus Number : " + BusNo;
+			}
+					
 		} catch (Exception e) {
 			throw new BusesException(e.getMessage());
 		}
