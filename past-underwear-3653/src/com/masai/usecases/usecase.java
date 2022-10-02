@@ -1,8 +1,8 @@
 package com.masai.usecases;
 
 import java.util.List;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import com.masai.bean.Administrators;
 import com.masai.bean.Buses;
 import com.masai.bean.Customer;
@@ -57,7 +57,8 @@ public class usecase {
 								System.out.println("Type 2 : To view ticket booked by " + customer.getCname());
 								System.out.println("Type 3 : To search buses ");
 								System.out.println("Type 4 : To book a new ticket");
-								System.out.println("Type 5 : Exit");
+								System.out.println("Type 5 : To cancel a ticket");
+								System.out.println("Type 6 : Exit");
 								input = sc.nextInt();
 								sc.nextLine();
 							
@@ -103,6 +104,16 @@ public class usecase {
 									break;
 								}
 								case 5: {
+									List<CustomerBookedTickets> tickets = new CustomerBookedTicketsDaoImpl().getTicketBookedbyCustomer(cusername);
+									tickets.forEach(t -> System.out.println(t + "\n" + "PNR Number : " + t.getBookingTime()));
+									
+									System.out.print("Enter the PNR Number to cancel ticket : ");
+									String pnr = sc.nextLine();
+									String message = new CustomerBookedTicketsDaoImpl().cancelTickets(pnr);
+									System.out.println(message);
+									break;
+								}
+								case 6: {
 									customerBoolean = false;
 									System.out.println("---Thankyou---");
 									break;
@@ -137,7 +148,8 @@ public class usecase {
 								System.out.println("Type 2 : To view Busses added by " + administrator.getAname());
 								System.out.println("Type 3 : To search bus ");
 								System.out.println("Type 4 : To add a new bus");
-								System.out.println("Type 5 : Exit");
+								System.out.println("Type 5 : To Bus Number to cancel bus : ");
+								System.out.println("Type 6 : Exit");
 								input = sc.nextInt();
 								sc.nextLine();
 							
@@ -169,6 +181,16 @@ public class usecase {
 									break;
 								}
 								case 5: {
+									List<Buses> buses = new BusesDaoImpl().searchBuseByAdministrator(ausername);
+									buses.forEach(b -> System.out.println(b + "\n"));
+									System.out.print("Enter the Bus Number to cancel bus : ");
+									String busNo = sc.nextLine();
+									String message = new BusesDaoImpl().DeleteBuseByBusNo(busNo);
+									System.out.println(message);
+									
+									break;
+								}
+								case 6: {
 									administratorBoolean = false;
 									System.out.println("---Thankyou---");
 									break;

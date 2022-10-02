@@ -157,15 +157,17 @@ insert into buses values(
 "2022-10-05 06-40-00",'Amravati', "2022-10-05 10-20-00", 
 'Non-AC', 0, 35, 500);
 
-mysql> select * from buses;
+
+select * from buses;
 +------------+----------------------+------------+----------+---------------------+-------------+---------------------+--------+------------+-----------+------+
 | busNo      | insertBy             | date       | source   | sTime               | destination | dTime               | type   | bookedSeat | totalSeat | fare |
 +------------+----------------------+------------+----------+---------------------+-------------+---------------------+--------+------------+-----------+------+
-| MH27BN9001 | prathamesh@gmail.com | 2022-09-29 | Amravati | 2022-09-29 13:40:00 | Shimla      | 2022-09-30 13:40:00 | AC     |         20 |        30 | 3000 |
-| MH27BY0001 | pratik123@gmail.com  | 2022-09-29 | Amravati | 2022-09-29 13:40:00 | Manali      | 2022-09-30 13:40:00 | AC     |         20 |        50 | 2500 |
+| MH27BH8976 | sahil@gmail.com      | 2022-10-15 | DELHI    | 2022-10-15 14:00:00 | AMRAVATI    | 2022-10-18 10:30:00 | AC     |          0 |        50 | 8000 |
+| MH27BN9001 | prathamesh@gmail.com | 2022-09-29 | Amravati | 2022-09-29 13:40:00 | Shimla      | 2022-09-30 13:40:00 | AC     |          0 |        30 | 3000 |
+| MH27BY0001 | pratik123@gmail.com  | 2022-09-29 | Amravati | 2022-09-29 13:40:00 | Manali      | 2022-09-30 13:40:00 | AC     |          0 |        50 | 2500 |
 | MH27BZ8701 | sahil@gmail.com      | 2022-09-29 | Akola    | 2022-10-05 06:40:00 | Amravati    | 2022-10-05 10:20:00 | Non-AC |          0 |        35 |  500 |
 +------------+----------------------+------------+----------+---------------------+-------------+---------------------+--------+------------+-----------+------+
-
+4 rows in set (0.00 sec)
 
 
 insert into CustomerBookedTickets values ('pratik@gmail.com', 'MH27BN9001', now(), 20);
@@ -191,7 +193,9 @@ mysql> select * from CustomerBookedTickets;
 
 
 
-
+UPDATE buses
+SET bookedSeat = 0
+WHERE busNo = 'MH27BN9001';
 
 
 
