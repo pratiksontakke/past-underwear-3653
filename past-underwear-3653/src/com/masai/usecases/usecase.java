@@ -169,7 +169,7 @@ public class usecase {
 								System.out.println("Type 2 : To view Busses added by " + administrator.getAname());
 								System.out.println("Type 3 : To search bus ");
 								System.out.println("Type 4 : To add a new bus");
-								System.out.println("Type 5 : To Bus Number to cancel bus : ");
+								System.out.println("Type 5 : To Cancle a Bus, Enter Bus Number : ");
 								System.out.println("Type 6 : Exit");
 								input = sc.nextInt();
 								sc.nextLine();
