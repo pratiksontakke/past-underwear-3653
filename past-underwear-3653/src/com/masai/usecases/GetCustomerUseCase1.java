@@ -18,7 +18,7 @@ public class GetCustomerUseCase1 {
 		CustomerDao dao = new CustomerDaoImpl();
 		
 		try {
-			Customer customer = dao.getCustomerByCid(cid);
+			Customer customer = dao.getCustomerByUsername(cid);
 			System.out.println(customer);
 		} catch (CustomerException ce) {
 			System.out.println(ce.getMessage());

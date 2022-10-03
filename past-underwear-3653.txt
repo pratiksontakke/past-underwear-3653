@@ -197,5 +197,7 @@ UPDATE buses
 SET bookedSeat = 0
 WHERE busNo = 'MH27BN9001';
 
+DELETE FROM buses WHERE busNo=?;
+
 
 

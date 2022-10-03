@@ -25,10 +25,11 @@ public class usecase {
 		while(menuBoolean) {
 			System.out.println();
 			System.out.println("Welcome to Bus Reservation System");
-			System.out.println("Type 1 : Login as Customer");
-			System.out.println("Type 2 : Login as Administrator");
-			System.out.println("Type 3 : Search Buses");
-			System.out.println("Type 4 : Exit");
+			System.out.println("Type 1 : create a new customer account : ");
+			System.out.println("Type 2 : Login as Customer");
+			System.out.println("Type 3 : Login as Administrator");
+			System.out.println("Type 4 : Search Buses");
+			System.out.println("Type 5 : Exit");
 			
 			Scanner sc = new Scanner(System.in);
 			int input = sc.nextInt();
@@ -38,6 +39,26 @@ public class usecase {
 				
 				switch(input) {
 					case 1:
+						Customer newcustomer = new Customer();
+						
+						System.out.println("create a new customer account.");
+						System.out.print("Enter your gmail : ");
+						String newcusername = sc.nextLine();
+						newcustomer.setCuserName(newcusername);
+						System.out.print("Enter your name : ");
+						String newname = sc.nextLine();
+						newcustomer.setCname(newname);
+						System.out.print("Enter your address : ");
+						String newaddress = sc.nextLine();
+						newcustomer.setAddress(newaddress);
+						System.out.print("Enter password : ");
+						String newpassword = sc.nextLine();
+						newcustomer.setCpassword(newpassword);
+						
+						String messagec = new CustomerDaoImpl().registerCustomer2(newcustomer);
+						System.out.println(messagec);
+						break;
+					case 2:
 						System.out.println("Login as customer : ");
 						System.out.print("Enter username : ");
 						String cusername = sc.nextLine();
@@ -129,7 +150,7 @@ public class usecase {
 							System.out.println(e.getMessage());
 						}
 						break;
-					case 2:
+					case 3:
 						System.out.println("Login as Administrator : ");
 						System.out.print("Enter username : ");
 						String ausername = sc.nextLine();
@@ -206,7 +227,7 @@ public class usecase {
 						}
 						
 						break;
-					case 3:
+					case 4:
 						System.out.print("Enter Source : ");
 						String source = sc.nextLine();
 						System.out.print("Enter Destination : ");
@@ -217,7 +238,7 @@ public class usecase {
 						System.out.println();
 						buses.forEach(b -> System.out.println(b));
 						break;
-					case 4:
+					case 5:
 						System.out.print("---Thankyou---");
 						menuBoolean = false;
 						break;

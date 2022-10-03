@@ -39,7 +39,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		String message = "Not Inserted..";
 		
 		try(Connection conn = DBUtil.provideConnection();) {
-			PreparedStatement ps = conn.prepareStatement("insert into customers values('?', '?' ,'?', '?')");
+			PreparedStatement ps = conn.prepareStatement("insert into customers values(?, ? ,?, ?)");
 			ps.setString(1, customer.getCuserName());
 			ps.setString(2, customer.getCpassword());
 			ps.setString(3, customer.getCname());
