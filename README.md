@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Personal Portfolio Website
 
@@ -65,3 +66,7 @@ On frontend terminal perform:
 Thank you all who is giving precious time to visit my little creative project which is made with lot of efforts.
 
 _<p align="center"><sub>- Designed by <a href="https://github.com/pratiksontakke">Pratik Sontakke</a> -</sub></p>_
+=======
+# past-underwear-3653
+Bus Ticket Reservation System
+>>>>>>> cc17a27517afa1ae9ba8ba76d4c8f21518c6a51e
