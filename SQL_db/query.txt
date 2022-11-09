@@ -1,0 +1,10 @@
+Export Query (terminal in bin of SQL "C:\Program Files\MySQL\MySQL Server 8.0\bin")
+
+mysqldump -u root -p past_underwear_3653 > "E:\Masai\SQL_db\past_underwear_3653.sql"
+
+Import Query :
+1 Create database past_underwear_3653;
+2 use past_underwear_3653;
+
+source E:\Masai\SQL_db\past_underwear_3653.sql
+
