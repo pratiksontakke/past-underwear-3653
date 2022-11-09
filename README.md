@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # Personal Portfolio Website
 
 Try to show my work and contribution to developer community.
